@@ -1,6 +1,6 @@
 package com.maycur.leetcode.offer;
 
-import com.maycur.leetcode.offer.dto.ListNode;
+import java.util.*;
 
 /**
  * 剑指 Offer 06. 从尾到头打印链表
@@ -11,6 +11,26 @@ import com.maycur.leetcode.offer.dto.ListNode;
 public class Offer06 {
 
     public int[] reversePrint(ListNode head) {
-
+        Stack<Integer> stack = new Stack<>();
+        int length = 0;
+        while (head != null){
+            System.out.println(head.next + ":" + head.val);
+            stack.push(head.val);
+            length++;
+            head = head.next;
+        }
+        int[] nums = new int[length];
+        for (int i = 0; i < length; i++){
+            nums[i] = stack.pop();
+        }
+        return nums;
     }
+
+    class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) { val = x; }
+    }
+
 }
+
