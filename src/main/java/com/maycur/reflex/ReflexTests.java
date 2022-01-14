@@ -1,8 +1,6 @@
 package com.maycur.reflex;
 
 import com.alibaba.fastjson.JSONObject;
-import com.maycur.intf.annotation.RequestMapping;
-import com.sun.net.httpserver.HttpsConfigurator;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
