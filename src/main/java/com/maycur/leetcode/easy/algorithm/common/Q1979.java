@@ -1,4 +1,4 @@
-package com.maycur.leetcode.easy.algorithm;
+package com.maycur.leetcode.easy.algorithm.common;
 
 /**
  * 1979. 找出数组的最大公约数

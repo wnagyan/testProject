@@ -1,4 +1,4 @@
-package com.maycur.leetcode.easy.algorithm;
+package com.maycur.leetcode.easy.algorithm.common;
 
 import java.util.ArrayList;
 import java.util.HashMap;

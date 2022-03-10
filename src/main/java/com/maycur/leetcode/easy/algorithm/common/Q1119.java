@@ -1,4 +1,4 @@
-package com.maycur.leetcode.easy.algorithm;
+package com.maycur.leetcode.easy.algorithm.common;
 
 /**
  * 1119. 删去字符串中的元音

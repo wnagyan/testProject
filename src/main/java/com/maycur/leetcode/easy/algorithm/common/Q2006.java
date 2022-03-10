@@ -1,4 +1,4 @@
-package com.maycur.leetcode.easy.algorithm;
+package com.maycur.leetcode.easy.algorithm.common;
 
 /**
  * 2006. 差的绝对值为 K 的数对数目

@@ -1,4 +1,4 @@
-package com.maycur.leetcode.easy.algorithm;
+package com.maycur.leetcode.easy.algorithm.string;
 
 /**
  * 1332.删除回文子序列

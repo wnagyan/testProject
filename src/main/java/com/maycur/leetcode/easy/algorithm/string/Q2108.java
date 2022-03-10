@@ -1,4 +1,4 @@
-package com.maycur.leetcode.easy.algorithm;
+package com.maycur.leetcode.easy.algorithm.string;
 
 import org.apache.commons.lang3.StringUtils;
 

@@ -1,4 +1,6 @@
-package com.maycur.leetcode.easy.algorithm;
+package com.maycur.leetcode.easy.algorithm.common;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 1119. 将每个元素替换为右侧最大元素
@@ -16,7 +18,7 @@ public class Q1299 {
         for (int i = arr.length - 2; i >= 0; i--){
             newArr[i] = max;
             if(max <= arr[i]){
-                max = arr[i];
+               max = arr[i];
             }
         }
         newArr[arr.length-1] = -1;
