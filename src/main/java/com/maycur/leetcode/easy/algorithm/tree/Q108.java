@@ -10,25 +10,6 @@ package com.maycur.leetcode.easy.algorithm.tree;
  */
 public class Q108 {
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     /**
      * 思路：递归构建树，因为数组是增量递增的，所以取中间值作为平衡二叉树的根节点，围绕根节点构建二叉树，
      *      当数组左边大于右边下标时，说明已经无法构建二叉树了，所以此时返回null
