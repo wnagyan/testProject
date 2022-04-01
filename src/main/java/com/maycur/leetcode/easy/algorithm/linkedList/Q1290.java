@@ -10,15 +10,6 @@ package com.maycur.leetcode.easy.algorithm.linkedList;
  */
 public class Q1290 {
 
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
     public int getDecimalValue(ListNode head) {
         int num = 0;
         StringBuilder str = new StringBuilder("");
