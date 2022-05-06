@@ -17,6 +17,7 @@ public class Q2119 {
         }else {
             return false;
         }
+
     }
 
     public int reversalNum(int num){
