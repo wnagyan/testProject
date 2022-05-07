@@ -16,6 +16,7 @@ public class Q153 {
             }
         }
         return minNum;
+
     }
 
     public int findMin1(int[] nums) {
