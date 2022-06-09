@@ -1,6 +1,5 @@
-package com.maycur.leetcode.offer;
+package com.maycur.leetcode.offerI;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

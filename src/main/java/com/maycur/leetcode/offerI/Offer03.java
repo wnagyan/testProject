@@ -1,4 +1,4 @@
-package com.maycur.leetcode.offer;
+package com.maycur.leetcode.offerI;
 
 import java.util.Arrays;
 

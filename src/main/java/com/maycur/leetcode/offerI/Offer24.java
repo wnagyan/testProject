@@ -1,6 +1,4 @@
-package com.maycur.leetcode.offer;
-
-import java.util.Stack;
+package com.maycur.leetcode.offerI;
 
 /**
  * 剑指 Offer 24. 反转链表

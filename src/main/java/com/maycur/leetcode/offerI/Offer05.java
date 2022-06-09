@@ -1,6 +1,4 @@
-package com.maycur.leetcode.offer;
-
-import org.apache.commons.lang3.StringUtils;
+package com.maycur.leetcode.offerI;
 
 /**
  * 剑指 Offer 05. 替换空格

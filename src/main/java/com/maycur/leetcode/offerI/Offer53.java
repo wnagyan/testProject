@@ -1,10 +1,4 @@
-package com.maycur.leetcode.offer;
-
-import org.springframework.util.CollectionUtils;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+package com.maycur.leetcode.offerI;
 
 /**
  * 剑指 Offer 53 - I. 在排序数组中查找数字 I

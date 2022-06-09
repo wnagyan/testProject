@@ -1,7 +1,5 @@
-package com.maycur.leetcode.offer;
+package com.maycur.leetcode.offerI;
 
-import javax.annotation.meta.When;
-import java.util.Iterator;
 import java.util.Stack;
 
 /**
