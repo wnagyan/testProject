@@ -1,5 +1,11 @@
 package com.maycur.leetcode.easy.algorithm.common;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 /**
  * 1534. 统计好三元组
  *
@@ -19,7 +25,14 @@ package com.maycur.leetcode.easy.algorithm.common;
 public class Q1534 {
 
     public static void main(String[] args) {
-        countGoodTriplets(new int[]{3,0,1,1,9,7}, 7, 2, 3);
+//        String curDate = "2022-12-01";
+//        String preDate = "";
+//        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        LocalDate localDateTime = LocalDate.parse(curDate, dateTimeFormatter);
+//        preDate = dateTimeFormatter.format(localDateTime.plusMonths(-1));
+//        System.out.println(preDate);
+
+        System.out.println(String.valueOf(null));
     }
 
     public static int countGoodTriplets(int[] arr, int a, int b, int c) {
