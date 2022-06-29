@@ -16,14 +16,25 @@ import java.util.List;
 public class Q257 {
 
     public List<String> binaryTreePaths(TreeNode root) {
-        List<String> treeLoads = new ArrayList<>();
-        List<TreeNode> treeNodes = new ArrayList<>();
-        treeNodes.add(root);
-        while (!CollectionUtils.isEmpty(treeNodes)){
+        List<String> treePaths = new ArrayList<>();
+        buildRoad(root, "", treePaths);
+        return treePaths;
+    }
 
+    public void buildRoad(TreeNode root, String path, List<String> paths){
+        if (root != null){
+            StringBuilder stringBuilder = new StringBuilder(path);
+            //保存每次递归的节点值
+            stringBuilder.append(root.val);
+            if(root.left == null && root.right == null){
+                //当递归到叶子节点时，将路径加入到list中
+                paths.add(stringBuilder.toString());
+            }else {
+                //如果不是叶子节点，继续左右节点递归
+                stringBuilder.append("->");
+                buildRoad(root.left, stringBuilder.toString(), paths);
+                buildRoad(root.right, stringBuilder.toString(), paths);
+            }
         }
-
-
-        return treeLoads;
     }
 }
