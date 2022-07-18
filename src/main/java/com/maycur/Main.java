@@ -2,57 +2,45 @@ package com.maycur;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
     public static void main(String[] args) {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        List<String> list = new ArrayList<>();
-//        list.add("abc");
-//        list.add("bcd");
-//        list.add("345");
-//        list.add("456");
-//        try {
-//            String s = objectMapper.writeValueAsString(null);
-//            System.out.println(s);
-////            List<String> list1 = objectMapper.readValue(s, List.class);
-////            System.out.println(list1);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
+        String[] s = new String[2];
+        s[0] = "123456;123458";
+        s[1] = "123457";
 
-        System.out.println(fmtMicrometer("12345"));;
+        String str = "987654;987653";
 
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("s", s);
+        dataMap.put("str", str);
 
-    }
+        List<Long> fileIds = new ArrayList<>();
 
-    public static String fmtMicrometer(String text) {
-        DecimalFormat df = null;
-        if (text.indexOf(".") > 0) {
-            if (text.length() - text.indexOf(".") - 1 == 0) {
-                df = new DecimalFormat("###,##0.");
-            } else if (text.length() - text.indexOf(".") - 1 == 1) {
-                df = new DecimalFormat("###,##0.0");
-            } else {
-                df = new DecimalFormat("###,##0.00");
+        for (String key : dataMap.keySet()){
+            Object o = dataMap.get(key);
+            if (o instanceof String){
+                String[] split = String.valueOf(o).split(";");
+                fileIds = List.of(split).stream().map(Long::valueOf).collect(Collectors.toList());
+            }else if (o instanceof String[]){
+                String[] strings = (String[]) o;
+                for (String ss : strings){
+                    String[] split = String.valueOf(ss).split(";");
+                    fileIds.addAll(List.of(split).stream().map(Long::valueOf).collect(Collectors.toList()));
+                };
             }
-        } else {
-            df = new DecimalFormat("###,##0");
         }
-        double number = 0.0;
-        try {
-            number = Double.parseDouble(text);
-        } catch (Exception e) {
-            number = 0.0;
-        }
-        return df.format(number);
+        fileIds.forEach(System.out::println);
     }
+
+
 }
