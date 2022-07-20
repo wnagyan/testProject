@@ -1,4 +1,4 @@
-package com.maycur.leetcode.easy.algorithm.linkedList;
+package com.maycur.leetcode.medium.algorithm.linkedList;
 
 public class ListNode {
 
@@ -28,4 +28,5 @@ public class ListNode {
             head = head.next;
         }
     }
+
 }
