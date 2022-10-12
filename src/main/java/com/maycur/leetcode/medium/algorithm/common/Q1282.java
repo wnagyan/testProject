@@ -1,5 +1,7 @@
 package com.maycur.leetcode.medium.algorithm.common;
 
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,20 +21,23 @@ public class Q1282 {
 
     public List<List<Integer>> groupThePeople(int[] groupSizes) {
         List<List<Integer>> peopleList = new ArrayList<>();
-        Map<Integer, Integer> map = new HashMap<>();
-        for (Integer key : groupSizes){
-            map.put(key, map.getOrDefault(key, 0) + 1);
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < groupSizes.length; i++){
+            List list = map.getOrDefault(groupSizes[i], new ArrayList<>());
+            list.add(i);
+            map.put(groupSizes[i], list);
         }
         for (Integer key : map.keySet()){
-            int time = map.get(key) / key;
+            int time = map.get(key).size() / key;
+            int begin = 0;
+            int end = begin + key;
             for (int i = 0; i < time; i++){
-                List<Integer> groupList = new ArrayList<>();
-
-
-
+                List<Integer> groupList = map.get(key).subList(begin, end);
+                begin = end;
+                end = begin + key;
+                peopleList.add(groupList);
             }
         }
-
         return peopleList;
     }
 }

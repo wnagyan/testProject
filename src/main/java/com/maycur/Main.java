@@ -15,11 +15,8 @@ public class Main {
 //        map.forEach((key, value) -> {
 //            System.out.println(value);
 //        });
-        String s = "/health,/api/socket/**,/manager/**,/captcha/**,/auth/**,/refreshVersionFeatures,/limit/**,/gw/manager/**,/dtalk/**,/weixinserv/**,/actuator/**,/flow/api/workflow/**,/flow/design/form/noVerification/**,/vfs/downloads/**,/orgs/user/activeUser,/orgs/error,/orgs/register/**,/orgs/page/**,/orgs/auth/**,/orgs/captcha/**,/orgs/common/**,/orgs/api/**,/orgs/pavilion/simulationOn,/disv/**,/security/oauth/**,/vfs/wps/v1/3rd/fileinfo,/openapi/**,/project/ivr/callback,/yixin/**,/flow/workflow/endorsement/**,/flow/workflow/qrCodeData/get/CodeValue,/bfc/plat/data/**,/bfc/msg/test/**,/bfc/tenant/org/sync,/bfc/wx/**,/bfc/plat/data/**,/bfc/tenant/init/check,/bfc/error,/bfc/api/**,/seal/open/getCount,/flow/raReport/**";
-        String[] split = s.split(",");
-        for (String str : split){
-            System.out.println(str);
-        }
+        long l = 102l;
+
     }
 
 }
