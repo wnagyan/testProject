@@ -42,21 +42,7 @@ public class TreeNode {
             for (int j = begin; j < begin * 2; j++){
                 childList.add(list.get(j-1));
             }
-            while (!queue.isEmpty()){
-                TreeNode node = queue.poll();
-                for (int k = 0; k < childList.size(); k += 2){
-                    if (childList.get(k) == null){
-                        node.left = null;
-                    }else {
-                        node.left = new TreeNode(childList.get(k));
-                    }
-                    if (childList.get(k+1) == null){
-                        node.right = null;
-                    }else {
-                        node.right = new TreeNode(childList.get(k+1));
-                    }
-                }
-            }
+            build(queue, childList);
             for (Integer val : childList){
                 if (val == null){
                     continue;
@@ -65,6 +51,24 @@ public class TreeNode {
             }
         }
         return root;
+    }
+
+    private static void build(Queue<TreeNode> queue, List<Integer> childList){
+        while (!queue.isEmpty()){
+            TreeNode node = queue.poll();
+            for (int k = 0; k < childList.size(); k += 2){
+                if (childList.get(k) == null){
+                    node.left = null;
+                }else {
+                    node.left = new TreeNode(childList.get(k));
+                }
+                if (childList.get(k+1) == null){
+                    node.right = null;
+                }else {
+                    node.right = new TreeNode(childList.get(k+1));
+                }
+            }
+        }
     }
 
     /**

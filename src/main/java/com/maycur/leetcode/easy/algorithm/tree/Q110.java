@@ -13,7 +13,13 @@ package com.maycur.leetcode.easy.algorithm.tree;
 public class Q110 {
 
     public boolean isBalanced(TreeNode root) {
-        return true;
+        if (root == null){
+            return true;
+        }
+        if (Math.abs(depthTree(root.left) - depthTree(root.right)) > 1){
+            return false;
+        }
+        return isBalanced(root.left) && isBalanced(root.right);
     }
 
     public int depthTree(TreeNode treeNode){
