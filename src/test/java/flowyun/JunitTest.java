@@ -1,5 +1,6 @@
 package flowyun;
 
+import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.fastjson.JSONPObject;
 import com.alibaba.fastjson.parser.deserializer.JSONObjectDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +10,7 @@ import com.util.MapToBeanUtil;
 import lombok.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.ibatis.reflection.wrapper.ObjectWrapper;
@@ -16,9 +18,12 @@ import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.net.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -258,8 +263,72 @@ public class JunitTest {
 
     @Test
     public void booleanTest(){
-        String str = "FALSE";
-
-        System.out.println(str.toLowerCase());
+        String str = "null";
+        Boolean grayed = "false".equalsIgnoreCase(str) ? Boolean.FALSE : Boolean.TRUE;
+        Boolean grayedd = Boolean.valueOf(str) ? Boolean.TRUE : Boolean.FALSE;
+        System.out.println(grayed);
+        System.out.println(grayedd);
     }
+
+    class Mclass extends StatFilter{
+
+    }
+
+    @Test
+    public void methodTest(){
+        try {
+            Method setDbType = Mclass.class.getSuperclass().getDeclaredMethod("setDbType", String.class);
+            System.out.println(setDbType.toString());
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void foreachTest(){
+        List<Integer> list = List.of(1, 3, 5, 2);
+        list.forEach(e -> {
+            if (e == 3){
+                return;
+            }
+            System.out.println(e);
+        });
+    }
+
+    @Test
+    public void forTest(){
+        String dateString = "2023-06-08 00:00:00";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            System.out.println(String.valueOf(simpleDateFormat.parse(dateString).getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void listTest(){
+        long startTime = LocalDateTime.now().plusMonths(-1).toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+        System.out.println(startTime);
+    }
+
+    @Test
+    public void fun9(){
+        List<String> list = new ArrayList<>();
+        list.add("赵云");
+        list.add("黄忠");
+        list.add("马超");
+        list.add("关羽");
+        list.add("张飞");
+        // 获取迭代器
+        Iterator<String> it = list.iterator();
+        while(it.hasNext()){
+            String str = it.next();
+            if("关羽".equals(str)){
+                it.remove();
+            }
+        }
+        System.out.println(list);
+    }
+
 }
