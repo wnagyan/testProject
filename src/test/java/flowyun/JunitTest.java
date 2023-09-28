@@ -5,11 +5,13 @@ import com.alibaba.fastjson.JSONPObject;
 import com.alibaba.fastjson.parser.deserializer.JSONObjectDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.Employee;
+import com.test.MyEmployee;
 import com.test.StatusType;
 import com.util.MapToBeanUtil;
 import lombok.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -18,13 +20,16 @@ import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.net.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
 public class JunitTest {
@@ -314,21 +319,50 @@ public class JunitTest {
 
     @Test
     public void fun9(){
-        List<String> list = new ArrayList<>();
-        list.add("赵云");
-        list.add("黄忠");
-        list.add("马超");
-        list.add("关羽");
-        list.add("张飞");
+        List<Employee> list = new ArrayList<>();
+        list.add(new Employee("刘备", 23));
+        list.add(new Employee("黄忠", 22));
+        list.add(new Employee("马超", 24));
+        list.add(new Employee("关羽", 25));
+        list.add(new Employee("张飞", 26));
         // 获取迭代器
-        Iterator<String> it = list.iterator();
+        Iterator<Employee> it = list.iterator();
         while(it.hasNext()){
-            String str = it.next();
-            if("关羽".equals(str)){
-                it.remove();
-            }
+            Employee str = it.next();
+            str.setAge(30);
         }
         System.out.println(list);
     }
+
+    @Test
+    public void tryCatchTest(){
+        List<Long> l1 = new ArrayList<>();
+        List<Long> l2 = new ArrayList<>();
+
+        l1.add(123456L);
+        l2.add(123456L);
+
+
+
+        System.out.println(CollectionUtils.isEqualCollection(l1, l2));
+        System.out.println(l1.contains(123456L));
+    }
+
+    @Test
+    public void parentTest(){
+        BigDecimal bigDecimal = new BigDecimal("11234567890123456789123456789");
+        System.out.println(bigDecimal);
+    }
+
+    @Test
+    public void beanCopyTest(){
+        try {
+            int i = 1/0;
+            System.out.println("asdasda");
+        }catch (Exception e){
+            System.out.println("ffffff");
+        }
+    }
+
 
 }

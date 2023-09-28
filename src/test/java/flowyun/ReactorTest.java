@@ -8,6 +8,7 @@ import org.reactivestreams.Subscription;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -99,4 +100,39 @@ public class ReactorTest {
         String data;
         int status;
     }
+
+    @Test
+    public void bufferTest(){
+//        Flux.range(1, 100).buffer(20).subscribe(System.out::println);
+//        Flux.interval(Duration.ofMillis(100)).buffer(1001).take(2).toStream().forEach(System.out::println);
+        Flux.range(1, 10).bufferUntil(i -> i%2 == 0).subscribe(System.out::println);
+//        Flux.range(1, 10).bufferWhile(i -> i%2 == 0).subscribe(System.out::println);
+    }
+
+    @Test
+    public void filterTest(){
+        Flux.range(1, 10).filter(i -> i%2 == 0).subscribe(System.out::println);
+    }
+
+    @Test
+    public void zipWithTest(){
+        Flux.just("a", "b").zipWith(Flux.just("c", "d")).subscribe(System.out::println);
+        Flux.just("a", "b").zipWith(Flux.just("c", "d"), (s1, s2) -> String.format("%s-%s", s1, s2)).subscribe(System.out::println);
+    }
+
+    @Test
+    public void takeTest(){
+//        Flux.range(1, 1000).take(10).subscribe(System.out::println);
+//        Flux.range(1, 1000).takeLast(10).subscribe(System.out::println);
+//        Flux.range(1, 1000).takeWhile(i -> i < 10).subscribe(System.out::println);
+        Flux.range(1, 1000).takeUntil(i -> i == 10).subscribe(System.out::println);
+    }
+
+    @Test
+    public void reduceTest(){
+        Flux.range(2, 3).reduce((x, y) -> x + y).subscribe(System.out::println);
+//        Flux.range(1, 100).reduceWith(() -> 100, (x + y) -> x + y).subscribe(System.out::println);
+    }
+
+
 }

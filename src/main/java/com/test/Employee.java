@@ -15,7 +15,4 @@ public class Employee {
 
     private Integer age;
 
-    private String businessScope;
-
-    private List<String> ids;
 }
