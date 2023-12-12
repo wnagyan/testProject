@@ -10,6 +10,7 @@ import java.util.Set;
 public class CustomClickHouseParserBaseListener extends ClickHouseParserBaseListener {
     private Map<String, Set<String>> dataBaseTablenameAndOper = new HashMap<>();//用来保存表与操作的对应关系
     private Map<String, Set<String>> dataBaseTablenameAliasAndOper = new HashMap<>();//用来保存表别名与操作的对应关系
+    private Set<String> dataBaseColumnAndOper = new HashSet<>();
 
     public Map<String, Set<String>> getDataBaseTablenameAndOper() {
         return dataBaseTablenameAndOper;
@@ -27,11 +28,16 @@ public class CustomClickHouseParserBaseListener extends ClickHouseParserBaseList
         return dataBaseTablenameAndOper;
     }
 
+    public Set<String> getDataBaseColumnAndOper(){
+        return dataBaseColumnAndOper;
+    }
+
 
     @Override
     public void enterQuery(ClickHouseParser.QueryContext ctx) {
         ParseTreeWalker queryWalker = new ParseTreeWalker();
         queryWalker.walk(new ClickHouseParserBaseListener() {
+
             public void enterTableIdentifier(ClickHouseParser.TableIdentifierContext tctx) {
                 if(tctx!=null) {
                     String table = tctx.getText()/*.toLowerCase()*/;
@@ -58,6 +64,15 @@ public class CustomClickHouseParserBaseListener extends ClickHouseParserBaseList
                     }
                     oper.add("SELECT");
                     dataBaseTablenameAliasAndOper.put(table, oper);
+                }
+            }
+        }, ctx);
+        queryWalker.walk(new ClickHouseParserBaseListener(){
+            @Override
+            public void enterColumnIdentifier(ClickHouseParser.ColumnIdentifierContext cctx) {
+                if(cctx!=null) {
+                    String column = cctx.getText()/*.toLowerCase()*/;
+                    dataBaseColumnAndOper.add(column);
                 }
             }
         }, ctx);

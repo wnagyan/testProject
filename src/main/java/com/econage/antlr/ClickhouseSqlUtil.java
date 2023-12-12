@@ -21,8 +21,22 @@ public class ClickhouseSqlUtil {
         return clickhouseBaseBaseListener.getRealDataBaseTablenameAndOper();
     }
 
+    public static Set<String> getDataBaseColumnAndOper(String sql){
+        ClickHouseLexer lexer = new ClickHouseLexer(new ANTLRInputStream(sql));
+        CommonTokenStream tokenStream = new CommonTokenStream(lexer);
+        ClickHouseParser parser = new ClickHouseParser(tokenStream);
+        ParseTreeWalker walker = new ParseTreeWalker();
+
+        CustomClickHouseParserBaseListener clickhouseBaseBaseListener = new CustomClickHouseParserBaseListener();
+        walker.walk(clickhouseBaseBaseListener, parser.queryStmt());
+
+        return clickhouseBaseBaseListener.getDataBaseColumnAndOper();
+    }
+
     public static void main(String[] args) {
-        Map<String, Set<String>> dataBaseTablenameAndOper = getDataBaseTablenameAndOper("select a.id from t_order a join t_product b on a.productId = b.id");
-        System.out.println(dataBaseTablenameAndOper);
+//        Map<String, Set<String>> dataBaseTablenameAndOper = getDataBaseTablenameAndOper("select a.id from t_order a join t_product b on a.productId = b.id");
+//        System.out.println(dataBaseTablenameAndOper);
+        Set<String> dataBaseColumnAndOper = getDataBaseColumnAndOper("select a.id from t_order a join t_product b on a.productId = b.id");
+        System.out.println(dataBaseColumnAndOper);
     }
 }
